@@ -61,8 +61,8 @@ Native &rarr; React Native &rarr; Expo 순으로 점점 더 직관적으로 쉽�
 Expo를 사용해서 React Native 프로젝트를 생성하고, 안드로이드 환경에서 생성한 앱을 실행해보는 간단한 실습을 진행했다. 이후 기존 웹사이트를 WebView를 통해 앱 환경에서 실행시키는 실습을 진행했다. (Project Directory : React Native/test)
 
 <p float="left">
-  <img src="/images/20240826/figure1.jpg" width="100" />
-  <img src="/images/20240826/figure1.jpg" width="100" /> 
+  <img src="/images/20240826/figure1.jpg" width="300" />
+  <img src="/images/20240826/figure2.jpg" width="300" /> 
 </p>
 
 ## 참고 링크

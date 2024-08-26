@@ -1,61 +1,100 @@
-# 핀테크 스켈레톤 프로젝트
+# 특화 프로젝트 Sub-1 개인과제
 
-## 카테고리
+# 2024.08.26
+<details>
+<summary>학습내용</summary>
+<div markdown="1">
 
-| Application | Domain | Language | Framework |
-| ---- | ---- | ---- | ---- |
-| :black_square_button: Desktop Web | :black_square_button: AI | :black_square_button: JavaScript | :black_square_button: Vue.js |
-| :black_square_button: Mobile Web | :black_square_button: Big Data | :black_square_button: TypeScript | :black_square_button: React |
-| :black_square_button: Responsive Web | :black_square_button: Blockchain | :black_square_button: C/C++ | :black_square_button: Angular |
-| :black_square_button: Android App | :black_square_button: IoT | :black_square_button: C# | :black_square_button: Node.js |
-| :black_square_button: iOS App | :black_square_button: AR/VR/Metaverse | :black_square_button: Python | :black_square_button: Flask/Django |
-| :black_square_button: Desktop App | :black_square_button: Game | :black_square_button: Java | :black_square_button: Spring/Springboot |
-| | | :black_square_button: Kotlin | |
+# 스마트폰 앱 종류
 
-<!-- 필수 항목 -->
+## 1. 네이티브 앱
+![Android](https://img.shields.io/badge/-Android-3DDC84?style=flat-square&logo=android&logoColor=white)
+![Java](https://img.shields.io/badge/-Java-007396?style=flat-square&logo=java&logoColor=white)
+![Kotlin](https://img.shields.io/badge/-Kotlin-0095D5?style=flat-square&logo=kotlin&logoColor=white)
+![Android Studio](https://img.shields.io/badge/-Android%20Studio-3DDC84?style=flat-square&logo=android-studio&logoColor=white)
 
-## 프로젝트 소개
+![Apple](https://img.shields.io/badge/-Apple-000000?style=flat-square&logo=apple&logoColor=white)
+![Swift](https://img.shields.io/badge/-Swift-FA7343?style=flat-square&logo=swift&logoColor=white)
+![Objective-C](https://img.shields.io/badge/-Objective--C-438eff?style=flat-square&logo=apple&logoColor=white)
+![Xcode](https://img.shields.io/badge/-Xcode-147EFB?style=flat-square&logo=xcode&logoColor=white)
 
-* 프로젝트명: 
-* 서비스 특징: 
-* 주요 기능
-  - 
-* 주요 기술
-  - 
-* 배포 환경
-  - URL: 
-  - 테스트 계정: 
+**OS에 특화된 개발**
+- 장점: 가장 뛰어난 성능, 많은 기능 사용 가능
+- 단점: 필요한 지식이 많아 개발 속도 느림
 
-## 팀 소개
-* 김도한
-* 박영남
-* 신순호
-* 신호준
-* 엄혜림
-* 이유안
+## 2. 크로스 플랫폼
+![React Native](https://img.shields.io/badge/-React%20Native-61DAFB?style=flat-square&logo=react&logoColor=black)
+![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
 
-## 프로젝트 상세 설명
-### 1️⃣ 개발 환경
-#### - FE
-- 
-#### - BE
-- 
+![Flutter](https://img.shields.io/badge/-Flutter-02569B?style=flat-square&logo=flutter&logoColor=white)
+![Dart](https://img.shields.io/badge/-Dart-0175C2?style=flat-square&logo=dart&logoColor=white)
 
-### 2️⃣ 기술 스택
-#### - FE
+**하나의 언어로 여러 플랫폼 개발**
+- 장점: 빠른 개발 가능
+- 단점: 네이티브 대비 낮은 성능 및 기능 제한
 
-#### - BE
+## 3. 하이브리드 앱
+![HTML5](https://img.shields.io/badge/-HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/-CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
 
+**하나의 언어로 여러 플랫폼 개발**
+- 장점: 빠른 개발 가능
+- 단점: 네이티브 대비 낮은 성능 및 기능 제한
 
-### 3️⃣ ERD
+# React Native? Expo?
 
+![Android](https://img.shields.io/badge/-Android-3DDC84?style=flat-square&logo=android&logoColor=white)
+![Apple](https://img.shields.io/badge/-iOS-000000?style=flat-square&logo=apple&logoColor=white)
+&rarr;
+![React Native](https://img.shields.io/badge/-React%20Native-61DAFB?style=flat-square&logo=react&logoColor=black)
+&rarr;
+![Expo](https://img.shields.io/badge/-Expo-000020?style=flat-square&logo=expo&logoColor=white)
 
-### 4️⃣ Architecture
+React Native는 Android, iOS OS에서 별도로 개발하는 어려움을 해결하기 위해, JavaScript를 사용해서 한번에 개발할 수 있도록 FaceBook에서 출시한 크로스 플랫폼 프레임워크이다.
 
+Expo는 이런 React Native를 더욱 단순화 해서 개발하기 쉽게 만든 Tool 이다.
 
-### 5️⃣ 상세 기능
-#### - 
-#### - 
-#### - 
-#### - 
-#### - 
+Native &rarr; React Native &rarr; Expo 순으로 점점 더 직관적으로 쉽게 개발할 수 있지만, 반대로 새로운 기술이 Native에서 출시된 경우 반영되는 속도가 느리다는 단점이 있다. 이에 따라 Native에서 사용가능한 기능들을 Expo에서는 사용하지 못하는 경우가 발생한다.
+
+# 실습 내용
+Expo를 사용해서 React Native 프로젝트를 생성하고, 안드로이드 환경에서 생성한 앱을 실행해보는 간단한 실습을 진행했다. 이후 기존 웹사이트를 WebView를 통해 앱 환경에서 실행시키는 실습을 진행했다. (Project Directory : React Native/test)
+
+![figure1](/images/20240826/figure1.jpg)
+![figure2](/images/20240826/figure2.jpg)
+
+## 참고 링크
+- [Expo](https://expo.dev/)
+- [React Native](https://reactnative.dev/)
+- [Expo WebView Docs](https://docs.expo.dev/versions/latest/sdk/webview/)
+
+</div>
+</details>
+
+# 2024.08.27
+<details>
+<summary>학습내용</summary>
+<div markdown="1">
+</div>
+</details>
+
+# 2024.08.28
+<details>
+<summary>학습내용</summary>
+<div markdown="1">
+</div>
+</details>
+
+# 2024.08.29
+<details>
+<summary>학습내용</summary>
+<div markdown="1">
+</div>
+</details>
+
+# 2024.08.30
+<details>
+<summary>학습내용</summary>
+<div markdown="1">
+</div>
+</details>

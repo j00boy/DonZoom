@@ -35,18 +35,14 @@ public class SecurityConfig  {
   //private final CustomOAuth2SuccessHandler customOAuth2SuccessHandler;
 
   @Bean
-  public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration)
-      throws Exception {
+  public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
     return configuration.getAuthenticationManager();
   }
 
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
-    //
     http.cors((corsCustomizer -> corsCustomizer.configurationSource(
         new CorsConfigurationSource() {
-
           @Override
           public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
 

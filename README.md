@@ -83,3 +83,40 @@
 
 ## 깃컨벤션 작성 
   [노션 깃컨벤션](https://www.notion.so/Git-54e4e7ccd2f94680b639a36d12b9c3bd)
+
+
+
+
+
+  
+# 2024 08 29 
+
+## 기능명세서 작성 
+  [기능명세서 노션](https://www.notion.so/20790c51d64c40049d9d3c9abc6ad83d)
+## 핀테크 특강
+
+![alt text](image.png)
+ - 인터페이스계: 서버 간의 연결 담당 
+ - ![alt text](image-1.png)
+
+ - **코어넥스트 프로젝트** (국민은행)
+ - ![alt text](image-2.png)
+ - 메인프레임(고성능,트랜젝션보장,메모리 충분)을 클라우드(리눅스 여러대)로 전환하려고 함 
+ - 코볼트로 된 코드를 자바로 변환
+ - 기존업무 MSA 전환 여부 
+
+ - 거래패턴을 어떻게 구현할 것인지_거래체이닝,온라인거래,대용량처리
+ - ![alt text](image-3.png)
+ - ![alt text](image-4.png)
+
+- ![alt text](image-5.png)
+  - ai, 클라우드, saga의 단점, msa...
+
+ - 쿠버네티스 강의 추천 (유튜브)
+
+## DB_ 코치세션
+  충돌이 빈번할 것 같으면 **비관적 락**
+  아니면 **낙관적 락**
+
+## 피그마 목업 생성
+[피그마](https://www.figma.com/design/shQgjHzjC9fsU7m0XLuqXq/A108-Mock-up?node-id=0-1&node-type=CANVAS&t=ErwrZ5C23ZEEXnxC-0)

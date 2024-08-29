@@ -1,6 +1,7 @@
 # 특화 프로젝트 Sub-1 개인과제
 
 # 2024.08.26
+
 <details>
 <summary>학습내용</summary>
 <div markdown="1">
@@ -8,6 +9,7 @@
 # 스마트폰 앱 종류
 
 ## 1. 네이티브 앱
+
 ![Android](https://img.shields.io/badge/-Android-3DDC84?style=flat-square&logo=android&logoColor=white)
 ![Java](https://img.shields.io/badge/-Java-007396?style=flat-square&logo=java&logoColor=white)
 ![Kotlin](https://img.shields.io/badge/-Kotlin-0095D5?style=flat-square&logo=kotlin&logoColor=white)
@@ -19,10 +21,12 @@
 ![Xcode](https://img.shields.io/badge/-Xcode-147EFB?style=flat-square&logo=xcode&logoColor=white)
 
 **OS에 특화된 개발**
+
 - 장점: 가장 뛰어난 성능, 많은 기능 사용 가능
 - 단점: 필요한 지식이 많아 개발 속도 느림
 
 ## 2. 크로스 플랫폼
+
 ![React Native](https://img.shields.io/badge/-React%20Native-61DAFB?style=flat-square&logo=react&logoColor=black)
 ![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
 
@@ -30,15 +34,18 @@
 ![Dart](https://img.shields.io/badge/-Dart-0175C2?style=flat-square&logo=dart&logoColor=white)
 
 **하나의 언어로 여러 플랫폼 개발**
+
 - 장점: 빠른 개발 가능
 - 단점: 네이티브 대비 낮은 성능 및 기능 제한
 
 ## 3. 하이브리드 앱
+
 ![HTML5](https://img.shields.io/badge/-HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/-CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
 
 **하나의 언어로 여러 플랫폼 개발**
+
 - 장점: 빠른 개발 가능
 - 단점: 네이티브 대비 낮은 성능 및 기능 제한
 
@@ -58,6 +65,7 @@ Expo는 이런 React Native를 더욱 단순화 해서 개발하기 쉽게 만�
 Native &rarr; React Native &rarr; Expo 순으로 점점 더 직관적으로 쉽게 개발할 수 있지만, 반대로 새로운 기술이 Native에서 출시된 경우 반영되는 속도가 느리다는 단점이 있다. 이에 따라 Native에서 사용가능한 기능들을 Expo에서는 사용하지 못하는 경우가 발생한다.
 
 # 실습 내용
+
 Expo를 사용해서 React Native 프로젝트를 생성하고, 안드로이드 환경에서 생성한 앱을 실행해보는 간단한 실습을 진행했다. 이후 기존 웹사이트를 WebView를 통해 앱 환경에서 실행시키는 실습을 진행했다. (Project Directory : React Native/test)
 
 <p float="left">
@@ -66,6 +74,7 @@ Expo를 사용해서 React Native 프로젝트를 생성하고, 안드로이드 
 </p>
 
 ## 참고 링크
+
 - [Expo](https://expo.dev/)
 - [React Native](https://reactnative.dev/)
 - [Expo WebView Docs](https://docs.expo.dev/versions/latest/sdk/webview/)
@@ -74,6 +83,7 @@ Expo를 사용해서 React Native 프로젝트를 생성하고, 안드로이드 
 </details>
 
 # 2024.08.27
+
 <details>
 <summary>학습내용</summary>
 <div markdown="1">
@@ -100,15 +110,18 @@ Expo를 사용해서 React Native 프로젝트를 생성하고, 안드로이드 
 ## 주요 특징
 
 1. **분산성**
+
    - P2P(Peer-to-Peer) 네트워크를 기반
    - 중앙 서버나 관리자 없이 네트워크 참여자들이 직접 시스템을 유지
    - 단일 실패 지점(Single Point of Failure)을 제거하여 시스템의 안정성 향상
 
 2. **투명성**
+
    - 모든 거래 내역이 네트워크 참여자들에게 공개됨
    - 누구나 거래 내역을 확인할 수 있어 시스템의 신뢰도가 향상됨
 
 3. **불변성**
+
    - 한번 기록된 데이터는 수정이나 삭제가 사실상 불가능
    - 각 블록이 이전 블록의 정보를 포함하고 있어, 하나의 블록을 수정하려면 그 이후의 모든 블록을 수정해야 하고, 이는 데이터의 무결성을 보장하고 위변조를 방지한다.
 
@@ -129,6 +142,7 @@ Expo를 사용해서 React Native 프로젝트를 생성하고, 안드로이드 
 </details>
 
 # 2024.08.28
+
 <details>
 <summary>학습내용</summary>
 <div markdown="1">
@@ -136,13 +150,50 @@ Expo를 사용해서 React Native 프로젝트를 생성하고, 안드로이드 
 </details>
 
 # 2024.08.29
+
 <details>
 <summary>학습내용</summary>
 <div markdown="1">
+
+# 핀테크
+
+## 용어 정리
+
+- 계정계 : 은행의 핵심 업무인 자금관련 업무를 처리하는 시스템. 고객의 계좌와 직접적으로 관련된 거래 시스템을 총칭.
+- 정보계 : 계정계의 데이터를 기반으로 경영 정보, 고객 분석 등을 수행하는 시스템
+- 채널계 : 고객과의 접점을 담당하는 시스템
+- 인터페이스계
+
+## 은행에 대한 생각
+
+### 보수적
+
+1. 은행이란 본질적으로 고객의 자금을 다루기 때문에 시스템 안정성이 매우 중요하며, 장애에 민감하다
+2. 은행 산업은 엄격한 규제를 받으므로 내부 프로세스 역시 각종 규제들을 충족하도록 설계되어 있으며, 사용제품 역시 이미 설계되어 있거나 도입 시 커스터마이징이 필수적이다.
+3. 금융관련 데이터는 매우 민감한 정보이므로 높은 수준의 보안이 요구된다.
+
+### 기술적으로 뒤쳐진다
+
+'기술적으로 뒤쳐진다'!='기술이 나온지 오래 됐다'
+특정업무를 수행하기에 가장 적합한 기술을 사용하고 있다.
+
+Ex) 자금업무와 같은 중요하고 민감한 영역에서는 안정성, 보안성, 성능이 핵심이며, 메인프레임과 COBOL은 이러한 요구사항을 충족시키는 데 강점을 가지고 있다.
+
+## 코어뱅킹(계정계) 현대화
+
+### 코어넥스트 프로젝트
+
+메인프레임 &rarr; 클라우드 전환
+
+- 소스 전환(COBOL &rarr; JAVA)
+- 물리적인 장비 전환
+- 어플리케이션 구조 전환(모놀리식 &rarr; 미니/마이크로 서비스)
+
 </div>
 </details>
 
 # 2024.08.30
+
 <details>
 <summary>학습내용</summary>
 <div markdown="1">

@@ -141,19 +141,32 @@ MVI패턴
 
 ## 코치세션 무중단배포
 
-## 기획회의 
+## 기획회의
 
 ## 기능명세서 추가 & api 명세서 작성
-  [기능명세서 노션](https://www.notion.so/20790c51d64c40049d9d3c9abc6ad83d)
+
+[기능명세서 노션](https://www.notion.so/20790c51d64c40049d9d3c9abc6ad83d)
+
 ## react native 사전 학습
- - 노마드 강의 1강 수강 
 
+- 노마드 강의 1강 수강
 
-# 2024 09 01
+# 2024 09 02
 
 ## 지라 생성
-   - 프론트 피그마 목업 페이지 역할 배분 
+
+- 프론트 피그마 목업 페이지 역할 배분
 
 ## 피그마 목업 생성
 
 [피그마 주소](https://www.figma.com/design/shQgjHzjC9fsU7m0XLuqXq/A108-Mock-up?node-id=0-1&node-type=CANVAS&t=lDpJK50gbAfLTBHF-0)
+
+# 2024 09 03
+
+## 데이터과학 라이브 세션
+
+## 피그마 목업 진행중
+
+## 오후 하나은행 채용설명회 라이브
+
+## 핀테크 전문가 자문

@@ -48,7 +48,11 @@ Typescript: 4.0.0
 Zustand: 4.5.4
 Nginx: 1.27.0
 #### - BE
-- 
+Java
+Spring Boot JPA: 3.3.2
+Spring Security
+Mysql
+
 
 ### 2️⃣ 기술 스택
 #### - FE

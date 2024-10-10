@@ -2,22 +2,23 @@ import {colors} from '@/constants/colors';
 import {fonts} from '@/constants/font';
 import useAccount from '@/hooks/queries/useAccount';
 import useAccountBalance from '@/hooks/useAccountInfo';
+import {useSignupStore} from '@/stores/useAuthStore';
 import React, {useEffect, useState} from 'react';
 import {Pressable, ScrollView} from 'react-native';
 import {StyleSheet, Text, View} from 'react-native';
 import Svg, {Path} from 'react-native-svg';
 
 function AccountHistoryScreen({navigation}: any) {
-  const isParent = true;
+  const {isParent} = useSignupStore();
   const [selected, setSelected] = useState('아이');
   const {account, balance, error, refetch} = useAccountBalance();
   const {useGetAccountHistory} = useAccount();
   const {data} = useGetAccountHistory(
     account,
     '20241001',
-    '20241004',
+    '20241010',
     'A',
-    'ASC',
+    'DESC',
   );
 
   const transactionList = data?.rec.list;
@@ -46,6 +47,7 @@ function AccountHistoryScreen({navigation}: any) {
   const transformTransactionData = (
     rawData: RawTransaction[] | undefined,
   ): TransformedTransaction[] => {
+    console.log(rawData);
     if (!rawData) return [];
 
     return rawData.map((transaction: RawTransaction) => {
@@ -85,7 +87,7 @@ function AccountHistoryScreen({navigation}: any) {
 
   return (
     <View style={styles.container}>
-      {isParent ? (
+      {true ? (
         <View style={styles.accountInfoContainer}>
           <View style={styles.parentAccountInfoContainer}>
             <View style={styles.parentInfoTop}>

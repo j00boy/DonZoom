@@ -35,6 +35,7 @@ interface ChildProfile {
   name: string;
   email: string;
   nickname: string;
+  profileImage: string;
   accountNumber: string;
   balance: number;
   ongoingMissions?: string;
@@ -48,7 +49,7 @@ function ParentsMainScreen() {
   const [profileOrder, setProfileOrder] = useState(childrenProfile);
   const navigation = useNavigation() as any;
   const {account, balance, refetch} = useAccountBalance();
-  const {name} = useSignupStore();
+  const {name, profileImage} = useSignupStore();
   const [isMyScreen, setIsMyScreen] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const setChildId = useMissionStore(state => state.setChildId);
@@ -148,6 +149,7 @@ function ParentsMainScreen() {
         name: updatedChild.name,
         email: updatedChild.email,
         nickname: updatedChild.nickname,
+        profileImage: updatedChild.profileImage,
         accountNumber: updatedChild.accountNumber,
         balance: updatedChild.balance,
         // ongoingMissions: updatedChild.ongoingMissions,
@@ -189,7 +191,7 @@ function ParentsMainScreen() {
           <TouchableOpacity
             style={styles.parentsProfileContainer}
             onPress={viewMyScreen}>
-            <Profile name={name} />
+            <Profile name={name} image={profileImage} />
           </TouchableOpacity>
           <View style={styles.profileContainer}>
             {profileOrder.map((profile, index) => {
@@ -224,7 +226,7 @@ function ParentsMainScreen() {
                       animatedStyle,
                       {zIndex: profileOrder.length - index},
                     ]}>
-                    <Profile name={profile.name} />
+                    <Profile name={profile.name} image={profile.profileImage} />
                   </Animated.View>
                 </TouchableOpacity>
               );
@@ -294,7 +296,7 @@ function ParentsMainScreen() {
                 </TouchableOpacity>
               )}
             </View>
-            <TouchableOpacity
+            {/* <TouchableOpacity
               style={styles.myMissionContainer}
               onPress={() =>
                 navigation.navigate('부모미션', {
@@ -304,7 +306,7 @@ function ParentsMainScreen() {
               <Text style={styles.myMissionText}>
                 <Text style={{fontFamily: fonts.BOLD}}>미션</Text> 생성하러 가기
               </Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <TouchableOpacity
               style={styles.quizContainer}
               onPress={() => navigation.navigate('퀴즈')}>
@@ -492,7 +494,7 @@ function ParentsMainScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    flexGrow: 1,
+    flex: 1,
     backgroundColor: colors.WHITE,
     justifyContent: 'center',
     alignItems: 'center',

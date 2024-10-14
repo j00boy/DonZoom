@@ -244,6 +244,20 @@ const getTodaysReports = async (
   }
 };
 
+type LatestStock = {
+  lastCreatedAt: Date;
+  stockId: number;
+  stockName: string;
+  stockPrice: number;
+};
+
+const getLatestStock = async (stockId: number): Promise<LatestStock> => {
+  console.log('최신 데이터 요청');
+  const {data} = await axiosInstance.get(`/stock/${stockId}/latest`);
+  console.log('최신 데이터 :', data);
+  return data;
+};
+
 export {
   getStockList,
   getStock,
@@ -257,6 +271,7 @@ export {
   getReports,
   getTodaysReports,
   getMyStockId,
+  getLatestStock,
 };
 
 export type {
@@ -275,4 +290,5 @@ export type {
   TodayNewsResponse,
   AllReportResponse,
   TodayReportResponse,
+  LatestStock,
 };

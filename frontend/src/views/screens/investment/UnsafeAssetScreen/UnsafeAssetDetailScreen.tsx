@@ -50,7 +50,7 @@ export default function UnsafeAssetDetailScreen({navigation}: any) {
   const [realAssetMoney, setRealAssetMoney] = useState<number | undefined>(0); // 현재 보유한 금을 머니로 환산한 값
   const [realAssetDollar, setRealAssetDollar] = useState<number>(0); // 현재 보유한 금을 머니로 환산한 값
   const {getMyCoinMutation} = usePig();
-  const {useGetStock} = useStock();
+  const {useGetStock, useGetLatestStock} = useStock();
 
   // 종목 선택 옵션
   const domesticStocks = ['삼성전자', 'LG전자', '네이버', '카카오'];
@@ -97,11 +97,21 @@ export default function UnsafeAssetDetailScreen({navigation}: any) {
     'min',
   );
 
+  const {data: latestStockData, refetch} = useGetLatestStock(
+    getSelectedStockIndex(),
+  );
+
   useEffect(() => {
-    console.log(
-      `Selected stock: ${selectedStock}, Index: ${getSelectedStockIndex()}`,
-    );
+    console.log('getSelectedStockIndex():', getSelectedStockIndex());
+    console.log('latestStockData:', latestStockData);
+    setRealAssetMoney(latestStockData?.stockPrice);
+  }, [latestStockData]);
+
+  useEffect(() => {
     if (!isLoading && stockData) {
+      console.log(
+        `Selected stock: ${selectedStock}, Index: ${getSelectedStockIndex()}`,
+      );
       const stockprice =
         stockData.stockHistories[stockData.stockHistories.length - 1]?.close;
       setRealAssetMoney(stockprice);

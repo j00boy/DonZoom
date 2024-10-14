@@ -16,7 +16,7 @@ function AccountHistoryScreen({navigation}: any) {
   const {data} = useGetAccountHistory(
     account,
     '20241001',
-    '20241011',
+    '20241020',
     'A',
     'DESC',
   );

@@ -10,4 +10,5 @@ public class ChildInfoResponseDto {
   private final String email;
   private final String name;
   private final String nickname;
+  private String profileImage;
 }

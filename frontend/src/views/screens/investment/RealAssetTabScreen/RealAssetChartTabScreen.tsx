@@ -186,12 +186,13 @@ const styles = StyleSheet.create({
   },
   // 매수매도버튼
   actionButtonContainer: {
+    marginTop: 5,
     flexDirection: 'row',
     paddingHorizontal: 10,
     gap: 10,
   },
   actionButton: {
-    width: '50%',
+    width: '45%',
     height: 40,
     borderRadius: 10,
     alignItems: 'center',

@@ -67,8 +67,10 @@ const MakeNewMissionCompleteScreen = ({navigation, route}: any) => {
           console.log('Button pressed');
           sendMissionInfo(text, pay, selectedDate);
           setTimeout(() => {
-            navigation.navigate('부모미션');
-          }, 500);
+            navigation.navigate('부모미션',{
+              screen:"진행중"
+            });
+          }, 200);
         }}>
         <Text
           style={{

@@ -237,12 +237,12 @@ const styles = StyleSheet.create({
     paddingTop: 35,
   },
   yellowContainer: {
-    marginBottom: 20,
-    width: 320,
+    width: 320, // 반응형?
     borderRadius: 10,
-    backgroundColor: colors.YELLOW_25,
     paddingLeft: 18,
     paddingVertical: 20,
+    backgroundColor: colors.YELLOW_25,
+    marginBottom: 20,
   },
   titleText: {
     fontFamily: fonts.BOLD,

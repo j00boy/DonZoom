@@ -46,15 +46,18 @@ const MissionPastScreen = ({route}: any) => {
     setSelectedMissionBox(missionId === selectedMissionBox ? null : missionId);
   }, []);
 
-  const handleMissionDelete = useCallback(async (missionId: number) => {
-    try {
-      deleteMission(missionId, {
-        onSuccess: () => console.log('미션삭제'),
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  }, [deleteMission,refetch]);
+  const handleMissionDelete = useCallback(
+    async (missionId: number) => {
+      try {
+        deleteMission(missionId, {
+          onSuccess: () => refetch(),
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    [deleteMission, refetch],
+  );
 
   const formatDate = (dateStr: Date | undefined) => {
     if (!dateStr) return '';
@@ -90,7 +93,7 @@ const MissionPastScreen = ({route}: any) => {
                   <View style={{position: 'absolute', right: 25}}>
                     <Text
                       style={[
-                        styles.largetext,
+                        styles.largeText,
                         selectedMissionBox === mission.missionId && {
                           color: colors.GRAY_100,
                         },
@@ -99,14 +102,20 @@ const MissionPastScreen = ({route}: any) => {
                     </Text>
                     <Text
                       style={[
-                        styles.largetext,
+                        styles.mediumText,
                         selectedMissionBox === mission.missionId && {
                           color: colors.GRAY_100,
                         },
                       ]}>
                       {mission.reward.toLocaleString()}원
                     </Text>
-                    <Text style={styles.smalltext}>
+                    <Text
+                      style={[
+                        styles.smallText,
+                        selectedMissionBox === mission.missionId && {
+                          color: colors.GRAY_100,
+                        },
+                      ]}>
                       {formatDate(mission.dueDate)}까지
                     </Text>
                   </View>
@@ -153,21 +162,26 @@ const styles = StyleSheet.create({
   boxContainerActive: {
     backgroundColor: colors.YELLOW_25,
   },
-  largetext: {
+  largeText: {
     fontSize: 20,
-    margin: 3,
-    color: colors.BLACK,
-    fontFamily: fonts.BOLD,
-    textAlign: 'right',
-    fontWeight: '700',
-  },
-  smalltext: {
-    fontSize: 15,
-    margin: 3,
+    marginBottom: 10,
     fontFamily: fonts.MEDIUM,
     color: colors.BLACK,
     textAlign: 'right',
-    fontWeight: '400',
+  },
+  mediumText: {
+    fontSize: 15,
+    marginBottom: 5,
+    fontFamily: fonts.MEDIUM,
+    color: colors.BLACK,
+    textAlign: 'right',
+  },
+  smallText: {
+    fontSize: 15,
+    marginBottom: 5,
+    fontFamily: fonts.MEDIUM,
+    color: colors.BLACK,
+    textAlign: 'right',
   },
 });
 

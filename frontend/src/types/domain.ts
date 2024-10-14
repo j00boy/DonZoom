@@ -8,6 +8,7 @@ interface Child {
   name: string;
   email: string;
   nickname: string;
+  profileImage: string;
 }
 
 interface Profile {
@@ -19,7 +20,7 @@ interface Profile {
   children: Child[];
 }
 
-interface Quiz{
+interface Quiz {
   quizId: number;
   question: string;
   answers: string[];

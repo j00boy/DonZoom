@@ -71,29 +71,29 @@ const UnsafeAssetChartTabScreen = ({
     refetch();
   };
 
-  useWebSocket([selectedStockIndex], (message: string) => {
-    if (selectedPeriod === '1분') {
-      try {
-        const parsedMessage: WebSocketMessage = JSON.parse(message);
-        setCurrentPrice(parsedMessage.close);
+  // useWebSocket([selectedStockIndex], (message: string) => {
+  //   if (selectedPeriod === '1분') {
+  //     try {
+  //       const parsedMessage: WebSocketMessage = JSON.parse(message);
+  //       setCurrentPrice(parsedMessage.close);
 
-        const newCandle: CandleData = {
-          x: new Date(parsedMessage.createdAt).toISOString(),
-          open: parsedMessage.open,
-          shadowH: parsedMessage.high,
-          shadowL: parsedMessage.low,
-          close: parsedMessage.close,
-        };
+  //       const newCandle: CandleData = {
+  //         x: new Date(parsedMessage.createdAt).toISOString(),
+  //         open: parsedMessage.open,
+  //         shadowH: parsedMessage.high,
+  //         shadowL: parsedMessage.low,
+  //         close: parsedMessage.close,
+  //       };
 
-        setCandleData(prevData => {
-          const updatedData = [...prevData, newCandle];
-          return updatedData.slice(-100); // 최근 100개의 데이터 포인트만 유지
-        });
-      } catch (error) {
-        console.error('Error parsing WebSocket message:', error);
-      }
-    }
-  });
+  //       setCandleData(prevData => {
+  //         const updatedData = [...prevData, newCandle];
+  //         return updatedData.slice(-100); // 최근 100개의 데이터 포인트만 유지
+  //       });
+  //     } catch (error) {
+  //       console.error('Error parsing WebSocket message:', error);
+  //     }
+  //   }
+  // });
 
   useEffect(() => {
     refetch();

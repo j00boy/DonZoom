@@ -59,7 +59,6 @@ const MissionCompleteScreen = ({route}: any) => {
         const response = await axiosInstance.patch(`/mission/${missionId}`, {
           status: 'ACCEPTED',
         });
-
         if (response.status === 200) {
           refetch();
         }

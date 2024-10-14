@@ -53,6 +53,7 @@ function ParentsMainScreen() {
   const [isMyScreen, setIsMyScreen] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const setChildId = useMissionStore(state => state.setChildId);
+  const setChildName = useMissionStore(state => state.setChildName);
   const childId = useMissionStore(state => state.getChildId());
   const setChildren = useMissionStore(state => state.setChildren);
   const userId = useSignupStore(state => state.id);
@@ -443,10 +444,10 @@ function ParentsMainScreen() {
                   <TouchableOpacity
                     style={[styles.nextButton, {marginBottom: 20}]}
                     onPress={() => {
-                      setChildId(profileOrder[0].id); // 먼저 setChildId 호출
+                      setChildId(profileOrder[0].id);
+                      setChildName(profileOrder[0].name); 
                       navigation.navigate('부모미션', {
-                        screen: '부모미션',
-                        params: {child: profileOrder[0]}, // params로 id 전달
+                        screen: '부모미션'
                       });
                     }}>
                     <Text style={styles.detailMission}>자세히 보기</Text>

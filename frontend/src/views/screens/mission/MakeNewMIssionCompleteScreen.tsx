@@ -51,9 +51,9 @@ const MakeNewMissionCompleteScreen = ({navigation, route}: any) => {
         미션 생성 완료
       </Text>
       <View style={styles.missionbox}>
-        <Text style={styles.missionText}>{text}</Text>
-        <Text style={styles.payText}>{pay.toLocaleString()} 원</Text>
-        <Text style={styles.missionText}>
+        <Text style={styles.largeText}>{text}</Text>
+        <Text style={styles.mediumText}>{pay.toLocaleString()} 원</Text>
+        <Text style={styles.smallText}>
           <Text style={{color: colors.BLUE_100}}>
             {formatDate(selectedDate)}
           </Text>{' '}
@@ -111,9 +111,30 @@ const styles = StyleSheet.create({
   },
   missionText: {
     fontSize: 15,
-    fontFamily: fonts.MEDIUM,
+    fontFamily: fonts.BOLD,
     color: colors.GRAY_100,
     fontWeight: '500',
+  },
+  largeText: {
+    fontSize: 25,
+    marginBottom: 10,
+    fontFamily: fonts.MEDIUM,
+    color: colors.BLUE_100,
+    textAlign: 'right',
+  },
+  mediumText: {
+    fontSize: 20,
+    marginBottom: 5,
+    fontFamily: fonts.MEDIUM,
+    color: colors.BLUE_100,
+    textAlign: 'right',
+  },
+  smallText: {
+    fontSize: 15,
+    marginBottom: 5,
+    fontFamily: fonts.MEDIUM,
+    color: colors.BLACK,
+    textAlign: 'right',
   },
   confirmButton: {
     position: 'absolute',

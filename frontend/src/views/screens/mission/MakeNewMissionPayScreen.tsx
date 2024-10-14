@@ -1,4 +1,4 @@
-import React, {useState,useCallback} from 'react';
+import React, {useState, useCallback} from 'react';
 import {
   SafeAreaView,
   Text,
@@ -8,15 +8,15 @@ import {
 } from 'react-native';
 import {colors} from '@/constants/colors';
 import KeyPad from '@/views/components/KeyPad';
-import { fonts } from '@/constants/font';
+import {fonts} from '@/constants/font';
 
 const MakeNewMissionPayScreen = ({navigation, route}: any) => {
   const {text, selectedDate} = route.params;
   const [value, setValue] = useState<number>(0);
   const [alertText, setAlertText] = useState('');
-  const valueString = value.toLocaleString(); // 천단위콤마로 화면에 표시 
+  const valueString = value.toLocaleString(); // 천단위콤마로 화면에 표시
 
-  // newvalue로 value 업데이트 함수 
+  // newvalue로 value 업데이트 함수
   const updateValue = useCallback((newValue: number) => {
     if (newValue >= 100000) {
       setValue(100000);
@@ -32,24 +32,10 @@ const MakeNewMissionPayScreen = ({navigation, route}: any) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      {/* paybox */}
       <View style={styles.paybox}>
-        <Text
-          style={{
-            marginTop: 35,
-            fontFamily: fonts.MEDIUM,
-            fontSize: 20,
-            color: colors.BLACK,
-          }}>
-          미션 금액을 설정해주세요!
-        </Text>
-        <Text
-          style={{
-            marginTop: 28,
-            fontFamily: fonts.BOLD,
-            fontSize: 40,
-            fontWeight: '700',
-            color: colors.BLUE_100,
-          }}>
+        <Text style={styles.topText}>미션 금액을 설정해주세요!</Text>
+        <Text style={styles.valueText}>
           {valueString} {''}
           <Text
             style={{
@@ -61,6 +47,7 @@ const MakeNewMissionPayScreen = ({navigation, route}: any) => {
           </Text>
         </Text>
       </View>
+      {/* 버튼 */}
       <View style={styles.buttonBox}>
         <TouchableOpacity
           style={styles.button}
@@ -84,6 +71,7 @@ const MakeNewMissionPayScreen = ({navigation, route}: any) => {
           <Text style={{color: colors.BLACK, fontWeight: '500'}}>+ 만원</Text>
         </TouchableOpacity>
       </View>
+      {/* 주의 메세지 */}
       <Text
         style={{
           marginTop: 10,
@@ -116,7 +104,6 @@ const MakeNewMissionPayScreen = ({navigation, route}: any) => {
           미션 생성하기
         </Text>
       </TouchableOpacity>
-      <Text></Text>
     </SafeAreaView>
   );
 };
@@ -128,6 +115,19 @@ const styles = StyleSheet.create({
     paddingTop: 30,
     backgroundColor: colors.YELLOW_25,
     alignItems: 'center',
+  },
+  topText: {
+    marginTop: 35,
+    fontFamily: fonts.MEDIUM,
+    fontSize: 20,
+    color: colors.BLACK,
+  },
+  valueText: {
+    marginTop: 28,
+    fontFamily: fonts.BOLD,
+    fontSize: 40,
+    fontWeight: '700',
+    color: colors.BLUE_100,
   },
   paybox: {
     width: 300,
@@ -151,8 +151,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   makeButton: {
-    // marginTop: 18,
-    position: 'absolute',
+    marginTop: 45,
     bottom: 40,
     width: 300,
     height: 50,

@@ -119,13 +119,12 @@ export default function InvestmentHomeScreen({navigation}: any) {
   }, [myStockData, stockPrices]);
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{backgroundColor:colors.WHITE}}>
       <ScrollView
-        // 스크롤뷰 내용물 안가리게 만들기 
+        // 스크롤뷰 내용물 안가리게 만들기
         contentContainerStyle={{
           flexGrow: 1,
-          padding: 20,
-          backgroundColor: colors.WHITE,
+          padding: 30,
           width: '100%',
         }}
         refreshControl={
@@ -211,13 +210,13 @@ export default function InvestmentHomeScreen({navigation}: any) {
                 </View>
                 <View
                   style={[styles.cell, styles.borderTop, styles.borderBottom]}>
-                  <Text style={styles.smallText}>만기 환급액</Text>
-                  <Text style={styles.smallText}>/만기 예상수익</Text>
+                  <Text style={styles.smallText}>
+                    만기 환급액{'\n'}/ 만기 예상 수익
+                  </Text>
                 </View>
                 <View
                   style={[styles.cell, styles.borderTop, styles.borderBottom]}>
-                  <Text style={styles.smallText}>20,000</Text>
-                  <Text style={styles.smallText}>/1,500</Text>
+                  <Text style={styles.smallText}>20,000{'\n'}/ 1,500</Text>
                 </View>
               </View>
 
@@ -229,12 +228,12 @@ export default function InvestmentHomeScreen({navigation}: any) {
                   <Text style={styles.text}>5,000</Text>
                 </View>
                 <View style={styles.cell}>
-                  <Text style={styles.smallText}>다음 납기일</Text>
-                  <Text style={styles.smallText}>/만기일</Text>
+                  <Text style={styles.smallText}>
+                    다음 납기일{'\n'}/ 만기일
+                  </Text>
                 </View>
                 <View style={[styles.cell, styles.bottomRightRadiusCell]}>
-                  <Text style={styles.smallText}>D-15</Text>
-                  <Text style={styles.smallText}>/24.12.25</Text>
+                  <Text style={styles.smallText}>D-15{'\n'}/ 24.12.25</Text>
                 </View>
               </View>
             </View>
@@ -265,7 +264,7 @@ export default function InvestmentHomeScreen({navigation}: any) {
                       styles.borderTop,
                       styles.borderBottom,
                     ]}>
-                    <Text style={styles.text}>원화매입금액</Text>
+                    <Text style={styles.text}>원화{'\n'}매입금액</Text>
                   </View>
                   <View
                     style={[
@@ -285,7 +284,7 @@ export default function InvestmentHomeScreen({navigation}: any) {
                       styles.borderTop,
                       styles.borderBottom,
                     ]}>
-                    <Text style={styles.text}>보유 수량</Text>
+                    <Text style={styles.text}>보유{'\n'}수량</Text>
                   </View>
                   <View
                     style={[
@@ -553,12 +552,14 @@ const styles = StyleSheet.create({
     backgroundColor: colors.YELLOW_25,
   },
   text: {
+    lineHeight:10,
     fontSize: 10,
     fontFamily: fonts.MEDIUM,
     color: colors.BLACK,
   },
   smallText: {
     fontSize: 8,
+    lineHeight:10,
     fontFamily: fonts.MEDIUM,
     color: colors.BLACK,
   },

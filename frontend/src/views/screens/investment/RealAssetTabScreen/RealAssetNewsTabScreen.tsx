@@ -38,7 +38,7 @@ const RealAssetNewsTabScreen = ({navigation}: any) => {
   const formatDate = (dateStr: Date) => {
     return new Date(dateStr).toISOString().slice(0, 10).replaceAll('-', '.');
   };
-  
+
   //  타이틀 적당히 자르기
   const formatTitle = (title: string) => {
     const words = title.split(' ');
@@ -88,31 +88,33 @@ const RealAssetNewsTabScreen = ({navigation}: any) => {
             <Text style={styles.headText}> {formatTitle(news.title)}</Text>
             <View style={{marginLeft: 210}}>
               <Text style={styles.headContentText}> {news.source}</Text>
-              <Text style={styles.headContentText}>{formatDate(news.createdAt)}</Text>
+              <Text style={styles.headContentText}>
+                {formatDate(news.createdAt)}
+              </Text>
             </View>
           </TouchableOpacity>
         ))}
       <View>
-        <Modal animationType="fade" visible={modalVisible} transparent={true}>
-          <TouchableWithoutFeedback
-            onPress={() => {
-              setModalVisible(false);
-            }}>
-            <View style={styles.modalOverlay}>
-              <TouchableWithoutFeedback>
-                <View style={styles.modalContainer}>
+        <Modal animationType="fade" visible={modalVisible} transparent={true} >
+          <View style={styles.modalOverlay}>
+            <TouchableWithoutFeedback
+              onPress={() => {
+                setModalVisible(false);
+              }}>
+              <View style={[styles.modalContainer, {flex: 1}]}>
+                <TouchableWithoutFeedback>
                   <Text style={styles.headText}> {selectedNews?.title}</Text>
                   <View style={{marginTop: 15, flex: 1}}>
-                    <ScrollView>
+                    <ScrollView style={{flex: 1}}>
                       <Text style={styles.modalBodyText}>
                         {selectedNews?.contents}
                       </Text>
                     </ScrollView>
                   </View>
-                </View>
-              </TouchableWithoutFeedback>
-            </View>
-          </TouchableWithoutFeedback>
+                </TouchableWithoutFeedback>
+              </View>
+            </TouchableWithoutFeedback>
+          </View>
         </Modal>
       </View>
       <TouchableOpacity

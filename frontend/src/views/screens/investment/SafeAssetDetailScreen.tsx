@@ -236,10 +236,20 @@ export default function SafeAssetDetailScreen() {
             </TouchableOpacity>
           ) : (
             <TouchableOpacity
-              style={styles.okButton}
-              onPress={() => setDepositModalVisible(true)}>
-              <Text style={styles.buttonText}>가입하기</Text>
-            </TouchableOpacity>
+            style={styles.okButton}
+            onPress={() => {
+              if (availableCoin < 1000) {
+                // 머니가 1000보다 적으면 경고 메시지를 보여줌
+                setAlertMessage('가입을 위해서는 최소 1000 머니 이상 필요합니다.');
+                setAlertModalVisible(true);
+              } else {
+                // 머니가 충분하면 적금 가입 모달을 염
+                setDepositModalVisible(true);
+              }
+            }}>
+            <Text style={styles.buttonText}>가입하기</Text>
+          </TouchableOpacity>
+          
           )}
 
           {/* 적금 금액 입력 모달 */}

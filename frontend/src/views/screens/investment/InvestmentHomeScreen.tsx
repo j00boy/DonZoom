@@ -19,7 +19,7 @@ import usePig from '@/hooks/queries/usePig';
 import {MyStock, ResponseMyStock} from '@/api/stock';
 import {useErrorStore} from '@/stores/errorMessagesStore';
 import {useFocusEffect} from '@react-navigation/native';
-
+import useSving from '@/hooks/queries/useSaving';
 export default function InvestmentHomeScreen({navigation}: any) {
   const [refreshing, setRefreshing] = useState(false);
 
@@ -30,17 +30,22 @@ export default function InvestmentHomeScreen({navigation}: any) {
     }, 2000);
   }, []);
   const {useGetMyStock, useGetStockList} = useStock();
+  const {useGetMySaving, useGetSavingsDetail} = useSving();
   const {id} = useSignupStore();
   const {getMyCoinMutation} = usePig();
   const money = getMyCoinMutation.data?.coin;
   const {data: myStockData, refetch: myStockRefetch} = useGetMyStock(id);
   const {data: stockListData, refetch: stockListRefetch} = useGetStockList();
+  const {data: mySavings, refetch: mySavingsRefetch} = useGetMySaving(); // 적금 상태 조회
+  const {data: savingsDetail, refetch: savingsDetailRefetch} = useGetSavingsDetail(id); // 적금 상세 정보 조회
 
   useFocusEffect(
     useCallback(() => {
       myStockRefetch();
       stockListRefetch();
-    }, [myStockRefetch, stockListRefetch]),
+      mySavingsRefetch();
+      savingsDetailRefetch();
+    }, [myStockRefetch, stockListRefetch,mySavingsRefetch, savingsDetailRefetch]),
   );
 
   const stockPrices = useMemo(() => {
@@ -180,55 +185,77 @@ export default function InvestmentHomeScreen({navigation}: any) {
             </Pressable>
           </TouchableOpacity>
 
-          {/* 적금 현황 */}
-          <View style={styles.statusContainer}>
-            <View style={styles.titleCell}>
-              <Text style={styles.titleText}>적금 현황</Text>
-            </View>
-            <View style={styles.row}>
-              <View
-                style={[styles.cell, styles.borderTop, styles.borderBottom]}>
-                <Text style={styles.text}>납부 현황</Text>
-              </View>
-              <View
-                style={[
-                  styles.cell,
-                  styles.borderTop,
-                  styles.borderRight,
-                  styles.borderBottom,
-                ]}>
-                <Text style={styles.text}>10,000</Text>
-              </View>
-              <View
-                style={[styles.cell, styles.borderTop, styles.borderBottom]}>
-                <Text style={styles.smallText}>만기 환급액</Text>
-                <Text style={styles.smallText}>/만기 예상수익</Text>
-              </View>
-              <View
-                style={[styles.cell, styles.borderTop, styles.borderBottom]}>
-                <Text style={styles.smallText}>20,000</Text>
-                <Text style={styles.smallText}>/1,500</Text>
-              </View>
-            </View>
+          {mySavings?.exists ? (
+            savingsDetail ? (
+              <View style={styles.statusContainer}>
+                <View style={styles.titleCell}>
+                  <Text style={styles.titleText}>적금 현황</Text>
+                </View>
+                <View>
+                  <View style={styles.row}>
+                    <View style={[styles.cell, styles.borderTop, styles.borderBottom]}>
+                      <Text style={styles.text}>납부 현황</Text>
+                    </View>
+                    <View
+                      style={[
+                        styles.cell,
+                        styles.borderTop,
+                        styles.borderRight,
+                        styles.borderBottom,
+                      ]}>
+                      <Text style={styles.text}>
+                        {savingsDetail?.currentPaidAmount.toLocaleString()}
+                      </Text>
+                    </View>
+                    <View style={[styles.cell, styles.borderTop, styles.borderBottom]}>
+                      <Text style={styles.smallText}>만기 환급액</Text>
+                      <Text style={styles.smallText}>/만기 예상수익</Text>
+                    </View>
+                    <View style={[styles.cell, styles.borderTop, styles.borderBottom]}>
+                      <Text style={styles.smallText}>
+                        {savingsDetail?.expectedMaturityAmount.toLocaleString()}
+                      </Text>
+                      <Text style={styles.smallText}>
+                        /{savingsDetail?.expectedMaturityProfit.toLocaleString()}
+                      </Text>
+                    </View>
+                  </View>
 
-            <View style={styles.row}>
-              <View style={[styles.cell, styles.bottomLeftRadiusCell]}>
-                <Text style={styles.text}>월 납금액</Text>
+                  <View style={styles.row}>
+                    <View style={[styles.cell, styles.bottomLeftRadiusCell]}>
+                      <Text style={styles.text}>월 납입액</Text>
+                    </View>
+                    <View style={[styles.cell, styles.borderRight]}>
+                      <Text style={styles.text}>
+                        {savingsDetail?.monthlyDeposit.toLocaleString()}
+                      </Text>
+                    </View>
+                    <View style={styles.cell}>
+                      <Text style={styles.smallText}>다음 납기일</Text>
+                      <Text style={styles.smallText}>/만기일</Text>
+                    </View>
+                    <View style={[styles.cell, styles.bottomRightRadiusCell]}>
+                      <Text style={styles.smallText}>
+                        {savingsDetail?.nextPaymentDue}
+                      </Text>
+                      <Text style={styles.smallText}>
+                        /{savingsDetail?.maturityDate}
+                      </Text>
+                    </View>
+                  </View>
+                </View>
               </View>
-              <View style={[styles.cell, styles.borderRight]}>
-                <Text style={styles.text}>5,000</Text>
-              </View>
-              <View style={styles.cell}>
-                <Text style={styles.smallText}>다음 납기일</Text>
-                <Text style={styles.smallText}>/만기일</Text>
-              </View>
-              <View style={[styles.cell, styles.bottomRightRadiusCell]}>
-                <Text style={styles.smallText}>D-15</Text>
-                <Text style={styles.smallText}>/24.12.25</Text>
-              </View>
-            </View>
-          </View>
+            ) : (
+              <Text>적금 상세 정보를 불러오는 중...</Text>
+            )
+          ) :  <View style={[styles.row, styles.emptyStateRow]}>
+                <Text style={styles.emptyStateText}>
+                  보유하고 있는 적금이 없습니다.
+                </Text>
+              </View>}
 
+
+         
           {/* 위험 자산 버튼 */}
           <TouchableOpacity style={{marginTop: 20}}>
             <Pressable

@@ -478,4 +478,14 @@ public class StockService {
       }
     }
   }
+
+    public StockDetailResponseDto getLatestStock(Long stockId) {
+      StockHistory1m stockHistory =  stockHistory1mRepository.findTop1ByStockIdOrderByCreatedAtDesc(stockId);
+      return StockDetailResponseDto.builder()
+              .stockId(stockId)
+              .stockName(stockRepository.getReferenceById(stockId).getStockName())
+              .stockPrice(stockHistory.getClose()*1.0f)
+              .lastCreatedAt(stockHistory.getCreatedAt())
+              .build();
+  }
 }

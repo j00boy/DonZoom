@@ -10,6 +10,7 @@ import {
   ScrollView,
   Modal,
   RefreshControl,
+  SafeAreaView,
 } from 'react-native';
 import { Calendar, DateData } from 'react-native-calendars';
 import CheckCalendar from '@/assets/CheckCalendar.svg';
@@ -122,10 +123,11 @@ function QuizHomeScreen({ navigation }: any) {
 
   return (
     <ScrollView
+      style={styles.container}
       refreshControl={
         <RefreshControl onRefresh={onRefresh} refreshing={refreshing} />
       }>
-      <View style={styles.container}>
+      <View>
         <View style={styles.calendarContainer}>
           <View style={styles.calendarTextContainer}>
             <Text style={styles.calendarTitle}>퀴즈 달력</Text>
@@ -136,7 +138,7 @@ function QuizHomeScreen({ navigation }: any) {
           <View style={styles.calendar}>
             <Calendar
               current={today}
-              dayComponent={({ date }: { date: DateData }) => {
+              dayComponent={({date}: {date: DateData}) => {
                 const dateKey = `${date.year}-${String(date.month).padStart(
                   2,
                   '0',
@@ -148,8 +150,8 @@ function QuizHomeScreen({ navigation }: any) {
                   weekday === 0
                     ? styles.sundayText
                     : weekday === 6
-                      ? styles.saturdayText
-                      : styles.defaultText;
+                    ? styles.saturdayText
+                    : styles.defaultText;
 
                 return (
                   <TouchableOpacity style={styles.dayContainer}>
@@ -224,46 +226,48 @@ function QuizHomeScreen({ navigation }: any) {
           <View style={styles.reviewTextContainer}>
             <Text style={styles.reviewTitle}>퀴즈 다시풀기</Text>
             <Text style={styles.reviewDescription}>
-              풀었던 퀴즈를 다시 풀면서 나의 경제 지식을 점검해보세요!
+              퀴즈를 다시 풀고 나의 경제 지식을 점검해보세요!
             </Text>
           </View>
 
           <View style={styles.reviewContentContainer}>
-  {reviewQuizQuestions.length > 0 &&
-    reviewQuizQuestions.reduce((groups:any[][], question, index) => {
-      // Group questions into sets of 3
-      if (index % 3 === 0) {
-        groups.push(reviewQuizQuestions.slice(index, index + 3));
-      }
-      return groups;
-    }, []).map((group, groupIndex) => {
-      if(groupIndex < 3){
-        return (
-          <View key={groupIndex} style={styles.reviewContentsBox}>
-          <View style={styles.reviewContentText}>
-            <Text style={styles.reviewContentTitle}>
-              다시풀기 {groupIndex + 1}
-            </Text>
-            <Text style={styles.reviewContentDescription}>
-              {group.length}문제
-            </Text>
+            {reviewQuizQuestions.length > 0 &&
+              reviewQuizQuestions
+                .reduce((groups: any[][], question, index) => {
+                  // Group questions into sets of 3
+                  if (index % 3 === 0) {
+                    groups.push(reviewQuizQuestions.slice(index, index + 3));
+                  }
+                  return groups;
+                }, [])
+                .map((group, groupIndex) => {
+                  if (groupIndex < 3) {
+                    return (
+                      <View key={groupIndex} style={styles.reviewContentsBox}>
+                        <View style={styles.reviewContentText}>
+                          <Text style={styles.reviewContentTitle}>
+                            다시풀기 {groupIndex + 1}
+                          </Text>
+                          <Text style={styles.reviewContentDescription}>
+                            {group.length}문제
+                          </Text>
+                        </View>
+                        <TouchableOpacity
+                          style={styles.reviewContentButton}
+                          onPress={() => {
+                            navigation.navigate('퀴즈 리뷰', {
+                              groupIndex: groupIndex,
+                            });
+                          }}>
+                          <Text style={styles.reviewContentButtonText}>
+                            다시풀기
+                          </Text>
+                        </TouchableOpacity>
+                      </View>
+                    );
+                  }
+                })}
           </View>
-          <TouchableOpacity
-            style={styles.reviewContentButton}
-            onPress={() => {
-              navigation.navigate('퀴즈 리뷰', {
-                groupIndex: groupIndex,
-              });
-            }}>
-            <Text style={styles.reviewContentButtonText}>다시풀기</Text>
-          </TouchableOpacity>
-        </View>
-        )
-      }
-    }
-    )}
-</View>
-
         </View>
       </View>
     </ScrollView>
@@ -272,8 +276,8 @@ function QuizHomeScreen({ navigation }: any) {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
-    paddingBottom: 45,
+    padding: 30,
+    // paddingBottom: 45,
     backgroundColor: colors.WHITE,
   },
   todayContainer: {

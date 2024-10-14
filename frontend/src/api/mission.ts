@@ -78,8 +78,12 @@ const modifyMission = async (params:newMission) => {
 
 // 미션삭제
 const deleteMission = async (missionId: number) => {
-  const {data} = await axiosInstance.delete(`/mission/${missionId}`);
-  console.log('미션삭제', data);
+  try{
+    const {data} = await axiosInstance.delete(`/mission/${missionId}`);
+  }
+  catch{
+    console.log('미션삭제axios에러')
+  }
 };
 
 export {getMissions, makeNewMission, modifyMission, deleteMission};

@@ -58,9 +58,9 @@ const MissionBox = ({
             },
           ]}>
           {/* 박스 크기 조정하*/}
-          <Text style={styles.largetext}> {missionTitle} </Text>
-          <Text style={styles.largetext}>{missionPay.toLocaleString()}원</Text>
-          <Text style={styles.smalltext}>
+          <Text style={styles.largeText}> {missionTitle} </Text>
+          <Text style={styles.mediumText}>{missionPay.toLocaleString()}원</Text>
+          <Text style={styles.smallText}>
             {missionDate}까지
           </Text>
         </Animated.View>
@@ -135,27 +135,33 @@ const styles = StyleSheet.create({
   },
   boxContainer: {
     // 미션 박스 스타일
-    height: 130,
     padding: 20,
+    height: 130,
     borderColor: colors.BLACK,
     backgroundColor: colors.YELLOW_50,
     borderRadius: 10,
+    justifyContent: 'center',
   },
-  largetext: {
-    fontSize: 18,
-    margin: 3,
-    color: colors.BLACK,
-    fontFamily: fonts.BOLD,
-    textAlign: 'right',
-    fontWeight: '700',
-  },
-  smalltext: {
-    fontSize: 15,
-    margin: 3,
+  largeText: {
+    fontSize: 20,
+    marginBottom: 10,
     fontFamily: fonts.MEDIUM,
     color: colors.BLACK,
     textAlign: 'right',
-    fontWeight: '400',
+  },
+  mediumText: {
+    fontSize: 15,
+    marginBottom: 5,
+    fontFamily: fonts.MEDIUM,
+    color: colors.BLACK,
+    textAlign: 'right',
+  },
+  smallText: {
+    fontSize: 15,
+    marginBottom: 5,
+    fontFamily: fonts.MEDIUM,
+    color: colors.BLACK,
+    textAlign: 'right',
   },
 });
 

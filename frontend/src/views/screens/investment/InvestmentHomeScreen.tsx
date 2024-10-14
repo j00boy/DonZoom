@@ -124,7 +124,7 @@ export default function InvestmentHomeScreen({navigation}: any) {
   }, [myStockData, stockPrices]);
 
   return (
-    <SafeAreaView style={{backgroundColor:colors.WHITE}}>
+    <SafeAreaView style={{flex:1,backgroundColor:colors.WHITE}}>
       <ScrollView
         // 스크롤뷰 내용물 안가리게 만들기
         contentContainerStyle={{

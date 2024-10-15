@@ -404,7 +404,7 @@ function ParentsMainScreen() {
                       진행 중인 미션 ({created.length})
                     </Text>
                     {created.length > 0 ? (
-                      createdMissions?.missions?.map(mission => (
+                      createdMissions?.missions?.slice(0,3).map(mission => (
                         <TouchableOpacity style={styles.missionBox}>
                           <Text style={styles.ongoingMissionText}>
                             {mission.contents}
@@ -425,7 +425,7 @@ function ParentsMainScreen() {
                       완료 요청 대기 ({done.length})
                     </Text>
                     {done.length > 0 ? (
-                      doneMissions?.missions?.map(mission => (
+                      doneMissions?.missions?.slice(0,3).map(mission => (
                         <TouchableOpacity style={styles.missionBox}>
                           <Text style={styles.ongoingMissionText}>
                             {mission.contents}

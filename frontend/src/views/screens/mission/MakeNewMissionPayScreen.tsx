@@ -5,6 +5,7 @@ import {
   View,
   StyleSheet,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 import {colors} from '@/constants/colors';
 import KeyPad from '@/views/components/KeyPad';
@@ -31,7 +32,7 @@ const MakeNewMissionPayScreen = ({navigation, route}: any) => {
   }, []);
 
   return (
-    <SafeAreaView style={styles.container}>
+    <ScrollView style={styles.container}>
       {/* paybox */}
       <View style={styles.paybox}>
         <Text style={styles.topText}>미션 금액을 설정해주세요!</Text>
@@ -71,40 +72,41 @@ const MakeNewMissionPayScreen = ({navigation, route}: any) => {
           <Text style={{color: colors.BLACK, fontWeight: '500'}}>+ 만원</Text>
         </TouchableOpacity>
       </View>
-      {/* 주의 메세지 */}
-      <Text
-        style={{
-          marginTop: 10,
-          fontFamily: fonts.MEDIUM,
-          fontSize: 13,
-          color: colors.GRAY_100,
-        }}>
-        {alertText}
-      </Text>
-      <KeyPad onInput={updateValue} currentValue={value} />
-
-      <TouchableOpacity
-        style={styles.makeButton}
-        onPress={() => {
-          navigation.navigate('MakeNewMissionComplete', {
-            text: text,
-            selectedDate: selectedDate,
-            pay: value,
-          });
-        }}>
+      <View style={styles.keypadBox}>
+        {/* 주의 메세지 */}
         <Text
           style={{
-            marginVertical: 10,
-            fontSize: 18,
             fontFamily: fonts.MEDIUM,
-            color: colors.BLACK,
-            fontWeight: '500',
-            textAlign: 'center',
+            fontSize: 13,
+            color: colors.GRAY_100,
           }}>
-          미션 생성하기
+          {alertText}
         </Text>
-      </TouchableOpacity>
-    </SafeAreaView>
+        <KeyPad onInput={updateValue} currentValue={value} />
+
+        <TouchableOpacity
+          style={styles.makeButton}
+          onPress={() => {
+            navigation.navigate('MakeNewMissionComplete', {
+              text: text,
+              selectedDate: selectedDate,
+              pay: value,
+            });
+          }}>
+          <Text
+            style={{
+              // marginVertical: 10,
+              fontSize: 18,
+              fontFamily: fonts.MEDIUM,
+              color: colors.BLACK,
+              fontWeight: '500',
+              textAlign: 'center',
+            }}>
+            미션 생성하기
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </ScrollView>
   );
 };
 export default MakeNewMissionPayScreen;
@@ -112,18 +114,17 @@ export default MakeNewMissionPayScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 30,
     backgroundColor: colors.YELLOW_25,
     alignItems: 'center',
+    justifyContent:'space-evenly',
   },
   topText: {
-    marginTop: 35,
     fontFamily: fonts.MEDIUM,
     fontSize: 20,
     color: colors.BLACK,
   },
   valueText: {
-    marginTop: 28,
+    marginTop: 20,
     fontFamily: fonts.BOLD,
     fontSize: 40,
     fontWeight: '700',
@@ -131,30 +132,30 @@ const styles = StyleSheet.create({
   },
   paybox: {
     width: 300,
-    height: 180,
+    paddingVertical:20,
     backgroundColor: colors.WHITE,
     alignItems: 'center',
     borderRadius: 10,
   },
   buttonBox: {
     flexDirection: 'row',
-    marginTop: 22,
   },
   button: {
     width: 65,
-    height: 36,
+    padding:10,
     borderRadius: 12,
     backgroundColor: colors.WHITE,
-    marginTop: 20,
-    margin: 10,
+    marginHorizontal: 10,
     justifyContent: 'center',
     alignItems: 'center',
   },
+  keypadBox:{
+    alignItems:'center',
+  },
   makeButton: {
-    marginTop: 45,
-    bottom: 40,
+    marginTop:15,
+    padding:10,
     width: 300,
-    height: 50,
     backgroundColor: colors.WHITE,
     borderRadius: 10,
   },

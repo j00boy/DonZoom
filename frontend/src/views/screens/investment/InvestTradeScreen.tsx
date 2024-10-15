@@ -59,6 +59,10 @@ const InvestTradeScreen = ({route, navigation}: any) => {
   useEffect(() => {
     const myCoin = getMyCoinMutation?.data ? getMyCoinMutation?.data.coin : 0;
     console.log('myCoin:', myCoin);
+    console.log('trade:', trade);
+    console.log('type:', type);
+    console.log('price:', price);
+    console.log('selectedStockIndex:', selectedStockIndex);
     if (myCoin === 0) {
       setAbleBuyNum(0);
     } else {
@@ -233,7 +237,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.WHITE,
     alignItems: 'center',
-    justifyContent:'center',
+    justifyContent: 'center',
     paddingTop: 35,
   },
   yellowContainer: {

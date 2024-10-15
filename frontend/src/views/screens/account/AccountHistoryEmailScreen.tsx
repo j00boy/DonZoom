@@ -98,7 +98,7 @@ function AccountHistoryEmailScreen({navigation}: any) {
           <View style={styles.parentInfoMiddle}>
             <Text style={styles.parentBalanceHeader}>남은 금액</Text>
             <Text style={styles.parentBalanceText}>
-              {String(selectedChild?.balance).toLocaleString()}원
+              {`${Number(selectedChild?.balance).toLocaleString()}원`}
             </Text>
           </View>
           <Pressable

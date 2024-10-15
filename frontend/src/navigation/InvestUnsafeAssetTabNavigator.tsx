@@ -9,6 +9,7 @@ import {StyleSheet} from 'react-native';
 const InvestUnsafeAssetTabNavigator = ({
   selectedStock,
   selectedStockIndex,
+  realAssetMoney,
 }: any) => {
   const Tab = createMaterialTopTabNavigator();
 
@@ -34,6 +35,7 @@ const InvestUnsafeAssetTabNavigator = ({
             {...props}
             selectedStock={selectedStock}
             selectedStockIndex={selectedStockIndex}
+            realAssetMoney={realAssetMoney}
           />
         )}
       </Tab.Screen>

@@ -6,6 +6,7 @@ interface ChildInfo {
   name: string;
   email: string;
   nickname: string;
+  profileImage: string;
   accountNumber: string;
   balance: number;
   ongoingMissions?: string;

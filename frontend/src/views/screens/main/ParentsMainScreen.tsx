@@ -35,6 +35,7 @@ interface ChildProfile {
   name: string;
   email: string;
   nickname: string;
+  profileImage: string;
   accountNumber: string;
   balance: number;
   ongoingMissions?: string;
@@ -48,10 +49,11 @@ function ParentsMainScreen() {
   const [profileOrder, setProfileOrder] = useState(childrenProfile);
   const navigation = useNavigation() as any;
   const {account, balance, refetch} = useAccountBalance();
-  const {name} = useSignupStore();
+  const {name, profileImage} = useSignupStore();
   const [isMyScreen, setIsMyScreen] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const setChildId = useMissionStore(state => state.setChildId);
+  const setChildName = useMissionStore(state => state.setChildName);
   const childId = useMissionStore(state => state.getChildId());
   const setChildren = useMissionStore(state => state.setChildren);
   const userId = useSignupStore(state => state.id);
@@ -147,6 +149,7 @@ function ParentsMainScreen() {
         name: updatedChild.name,
         email: updatedChild.email,
         nickname: updatedChild.nickname,
+        profileImage: updatedChild.profileImage,
         accountNumber: updatedChild.accountNumber,
         balance: updatedChild.balance,
         // ongoingMissions: updatedChild.ongoingMissions,
@@ -188,7 +191,7 @@ function ParentsMainScreen() {
           <TouchableOpacity
             style={styles.parentsProfileContainer}
             onPress={viewMyScreen}>
-            <Profile name={name} />
+            <Profile name={name} image={profileImage} />
           </TouchableOpacity>
           <View style={styles.profileContainer}>
             {profileOrder.map((profile, index) => {
@@ -223,7 +226,7 @@ function ParentsMainScreen() {
                       animatedStyle,
                       {zIndex: profileOrder.length - index},
                     ]}>
-                    <Profile name={profile.name} />
+                    <Profile name={profile.name} image={profile.profileImage} />
                   </Animated.View>
                 </TouchableOpacity>
               );
@@ -293,7 +296,7 @@ function ParentsMainScreen() {
                 </TouchableOpacity>
               )}
             </View>
-            <TouchableOpacity
+            {/* <TouchableOpacity
               style={styles.myMissionContainer}
               onPress={() =>
                 navigation.navigate('부모미션', {
@@ -303,7 +306,7 @@ function ParentsMainScreen() {
               <Text style={styles.myMissionText}>
                 <Text style={{fontFamily: fonts.BOLD}}>미션</Text> 생성하러 가기
               </Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <TouchableOpacity
               style={styles.quizContainer}
               onPress={() => navigation.navigate('퀴즈')}>
@@ -401,7 +404,7 @@ function ParentsMainScreen() {
                       진행 중인 미션 ({created.length})
                     </Text>
                     {created.length > 0 ? (
-                      createdMissions?.missions?.map(mission => (
+                      createdMissions?.missions?.slice(0,3).map(mission => (
                         <TouchableOpacity style={styles.missionBox}>
                           <Text style={styles.ongoingMissionText}>
                             {mission.contents}
@@ -422,7 +425,7 @@ function ParentsMainScreen() {
                       완료 요청 대기 ({done.length})
                     </Text>
                     {done.length > 0 ? (
-                      doneMissions?.missions?.map(mission => (
+                      doneMissions?.missions?.slice(0,3).map(mission => (
                         <TouchableOpacity style={styles.missionBox}>
                           <Text style={styles.ongoingMissionText}>
                             {mission.contents}
@@ -441,10 +444,10 @@ function ParentsMainScreen() {
                   <TouchableOpacity
                     style={[styles.nextButton, {marginBottom: 20}]}
                     onPress={() => {
-                      setChildId(profileOrder[0].id); // 먼저 setChildId 호출
+                      setChildId(profileOrder[0].id);
+                      setChildName(profileOrder[0].name); 
                       navigation.navigate('부모미션', {
-                        screen: '부모미션',
-                        params: {child: profileOrder[0]}, // params로 id 전달
+                        screen: '부모미션'
                       });
                     }}>
                     <Text style={styles.detailMission}>자세히 보기</Text>
@@ -491,7 +494,7 @@ function ParentsMainScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    flexGrow: 1,
+    flex: 1,
     backgroundColor: colors.WHITE,
     justifyContent: 'center',
     alignItems: 'center',

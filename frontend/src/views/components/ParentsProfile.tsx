@@ -8,11 +8,10 @@ import {useSignupStore} from '@/stores/useAuthStore';
 
 interface Props {
   name?: string;
+  image?: string;
 }
 
-const ParentsProfile = ({name}: Props) => {
-  const {profileImage} = useSignupStore();
-
+const ParentsProfile = ({name, image}: Props) => {
   return (
     <View style={styles.container}>
       <View style={styles.profileContainer}>
@@ -21,9 +20,9 @@ const ParentsProfile = ({name}: Props) => {
             <Image
               source={{
                 uri:
-                  profileImage === undefined || profileImage === null
+                  image === undefined || image === null
                     ? 'http://j11a108.p.ssafy.io:8081/api/uploads/676e51cb-fcd0-41fc-a07c-f8fea8e99f4f.png'
-                    : profileImage,
+                    : image,
               }}
               style={styles.image}
             />

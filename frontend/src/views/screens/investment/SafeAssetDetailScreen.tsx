@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
@@ -7,8 +7,8 @@ import {
   Modal,
   TouchableOpacity,
 } from 'react-native';
-import { colors } from '@/constants/colors';
-import { fonts } from '@/constants/font';
+import {colors} from '@/constants/colors';
+import {fonts} from '@/constants/font';
 import axiosInstance from '@/api/axios';
 import KeyPad from '@/views/components/KeyPad';
 
@@ -93,18 +93,24 @@ export default function SafeAssetDetailScreen() {
 
   const joinSavings = async () => {
     try {
-      if (monthlyDeposit <= 0) {
-        setAlertMessage('유효한 금액을 입력하세요.');
+      if (monthlyDeposit < 1000) {
+        setAlertMessage('최소 가입 금액은 1000 머니 입니다');
         setAlertModalVisible(true);
         return;
       }
 
-      const response = await axiosInstance.post(`/savings?monthlyDeposit=${monthlyDeposit}`);
+      const response = await axiosInstance.post(
+        `/savings?monthlyDeposit=${monthlyDeposit}`,
+      );
 
       if (response.status === 200) {
         setAlertMessage('적금 가입이 완료되었습니다.');
         setAlertModalVisible(true);
-        setSafeAssetStatus({ exists: true, status: '중도 해지 가능', canTerminate: true });
+        setSafeAssetStatus({
+          exists: true,
+          status: '중도 해지 가능',
+          canTerminate: true,
+        });
       }
     } catch (error) {
       console.error('Error creating savings account:', error);
@@ -118,8 +124,10 @@ export default function SafeAssetDetailScreen() {
       const response = await axiosInstance.post('/savings/terminate');
       if (response.status === 200) {
         setCalculatedMoney(response.data.totalAmount);
-        setSafeAssetStatus({ exists: false, status: '', canTerminate: false });
-        setAlertMessage(`적금 해지가 완료되었습니다. \n총 ${response.data.totalAmount} 머니가 반환되었습니다.`);
+        setSafeAssetStatus({exists: false, status: '', canTerminate: false});
+        setAlertMessage(
+          `적금 해지가 완료되었습니다. \n총 ${response.data.totalAmount} 머니가 반환되었습니다.`,
+        );
         setAlertModalVisible(true);
       }
     } catch (error) {
@@ -129,11 +137,13 @@ export default function SafeAssetDetailScreen() {
     }
   };
 
-  const updateValue = (value) => {
-    if (value > availableCoin) {
+  const updateValue = value => {
+  if (value > availableCoin) {
       setMonthlyDeposit(availableCoin);
+      setAlertText('');
     } else {
       setMonthlyDeposit(value);
+      setAlertText('');
     }
   };
 
@@ -158,7 +168,11 @@ export default function SafeAssetDetailScreen() {
             <Text style={styles.savingsNameText}>안전 제일 튼튼 적금</Text>
           </View>
           <View style={styles.savingsPercentageContainer}>
-            <View style={[styles.savingsPercentageLeftContainer, styles.borderRight]}>
+            <View
+              style={[
+                styles.savingsPercentageLeftContainer,
+                styles.borderRight,
+              ]}>
               <Text style={styles.savingsSubText}>최고</Text>
               <Text style={styles.savingsPercentageText}>연 3.5%</Text>
             </View>
@@ -236,10 +250,20 @@ export default function SafeAssetDetailScreen() {
             </TouchableOpacity>
           ) : (
             <TouchableOpacity
-              style={styles.okButton}
-              onPress={() => setDepositModalVisible(true)}>
-              <Text style={styles.buttonText}>가입하기</Text>
-            </TouchableOpacity>
+            style={styles.okButton}
+            onPress={() => {
+              if (availableCoin < 1000) {
+                // 머니가 1000보다 적으면 경고 메시지를 보여줌
+                setAlertMessage('가입을 위해서는 최소 1000 머니 이상 필요합니다.');
+                setAlertModalVisible(true);
+              } else {
+                // 머니가 충분하면 적금 가입 모달을 염
+                setDepositModalVisible(true);
+              }
+            }}>
+            <Text style={styles.buttonText}>가입하기</Text>
+          </TouchableOpacity>
+          
           )}
 
           {/* 적금 금액 입력 모달 */}
@@ -251,12 +275,23 @@ export default function SafeAssetDetailScreen() {
             <View style={styles.modalOverlay}>
               <View style={styles.modalContent}>
                 <View style={styles.depositBox}>
-                  <Text style={styles.modalText}>
-                    {monthlyDeposit > 0
-                      ? `${monthlyDeposit} 머니`
-                      : '적금 금액을 입력하세요'}
+                  <Text style={styles.modalTitleText}>가입 금액</Text>
+
+                  {monthlyDeposit > 0 ? (
+                    <Text
+                      style={[styles.modalContentText, {color: colors.BLACK}]}>
+                      {monthlyDeposit} 머니
+                    </Text>
+                  ) : (
+                    <Text style={styles.modalContentText}>
+                      매 월 얼마씩 넣을까요?
+                    </Text>
+                  )}
+
+                  <Text style={styles.coinText}>
+                    가입 가능 최소 2,000 | 최대 {availableCoin.toLocaleString()}{' '}
+                    머니
                   </Text>
-                  <Text style={styles.coinText}>구매 가능 최대: {availableCoin} 머니</Text>
                 </View>
                 <KeyPad onInput={updateValue} currentValue={monthlyDeposit} />
                 <View style={styles.modalButtonContainer}>
@@ -306,8 +341,8 @@ export default function SafeAssetDetailScreen() {
             </View>
           </Modal>
         </View>
-          {/* 알림 모달 */}
-          <Modal
+        {/* 알림 모달 */}
+        <Modal
           animationType="fade"
           transparent={true}
           visible={alertModalVisible}
@@ -343,7 +378,6 @@ const styles = StyleSheet.create({
     fontFamily: fonts.BOLD,
     fontSize: 20,
   },
-  
   savingsNameContainer: {
     marginTop: 20,
     width: 310,
@@ -452,16 +486,16 @@ const styles = StyleSheet.create({
     backgroundColor: colors.YELLOW_75,
   },
   cancelButton: {
-    width: 95,
-    height: 25,
+    width: '35%',
+    height: 30,
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#FEE37F',
   },
   realTerminateButton: {
-    width: 95,
-    height: 25,
+    width: '35%',
+    height: 30,
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
@@ -487,14 +521,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.5)', // 반투명 배경
   },
-  modalText: {
-    fontFamily: fonts.BOLD,
-    fontSize: 25,
-    marginTop: 10,
-    marginBottom: 10,
-    textAlign: 'left',
-    color: colors.BLACK,
-  },
   noteText: {
     fontFamily: fonts.LIGHT,
     marginTop: 14,
@@ -516,8 +542,8 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   modalContent: {
-    width: 320,
-    padding: 20,
+    width: 350,
+    paddingVertical: 30,
     backgroundColor: colors.WHITE, // 모달 배경색 하얀색
     borderRadius: 10,
     alignItems: 'center',
@@ -525,19 +551,31 @@ const styles = StyleSheet.create({
   modalButtonContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-around',
+    justifyContent: 'space-evenly',
     width: '100%', // 너비를 맞춤
     marginTop: 20,
   },
-
   depositBox: {
     backgroundColor: colors.YELLOW_25,
     borderRadius: 10,
-    padding: 10,
+    paddingVertical: 15,
+    paddingHorizontal: 20,
     marginBottom: 20,
-    width: '100%',
-    alignItems: 'center',
-  }, 
+    // width:320,
+  },
+  //모달텍스트
+  modalTitleText: {
+    fontFamily: fonts.BOLD,
+    fontWeight: '500',
+    fontSize: 11,
+    marginBottom: 10,
+    color: colors.BLACK,
+  },
+  modalContentText: {
+    fontFamily: fonts.MEDIUM,
+    fontSize: 23,
+    marginBottom: 10,
+  },
   coinText: {
     fontFamily: fonts.LIGHT,
     fontSize: 14,
@@ -558,7 +596,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
   },
-   
   modalButton: {
     backgroundColor: colors.YELLOW_75,
     paddingVertical: 10,

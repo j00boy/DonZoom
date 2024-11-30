@@ -59,9 +59,7 @@ const MissionOngoingChildScreen = () => {
         const response = await axiosInstance.patch(`/mission/${missionId}`, {
           status: 'DONE',
         });
-
         if (response.status === 200) {
-          // 성공한 경우에만 refetch 실행
           refetch();
         }
       } catch (error) {
@@ -80,6 +78,7 @@ const MissionOngoingChildScreen = () => {
           refetch();
         },
         onError: error => {
+          refetch();
           console.log(error);
           // 에러 처리 로직 추가
         },

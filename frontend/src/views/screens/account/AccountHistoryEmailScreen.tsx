@@ -12,7 +12,7 @@ function AccountHistoryEmailScreen({navigation}: any) {
   const {data} = useGetAccountHistoryEmail(
     selectedChild!.accountNumber,
     '20241001',
-    '20241011',
+    '20241020',
     'A',
     'DESC',
     selectedChild!.email,

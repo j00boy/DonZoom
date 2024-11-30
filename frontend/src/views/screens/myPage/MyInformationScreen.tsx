@@ -21,6 +21,7 @@ import {
 } from 'react-native';
 import NextIcon from 'react-native-vector-icons/MaterialIcons';
 import SetRelationModal from '@/views/components/SetRelationModal';
+import {useChildrenStore} from '@/stores/useChildrenStore';
 
 interface emailData {
   emailId: any;
@@ -35,6 +36,7 @@ function MyInformationScreen() {
   const {reset: signupReset} = useSignupForm();
   const {reset: passwordReset} = usePasswordStore();
   const {isParent} = useSignupStore();
+  const {myChildren, setSelectedChild: setCurrentChild} = useChildrenStore();
 
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -88,17 +90,21 @@ function MyInformationScreen() {
                   <Text style={styles.cardTitle}>등록된 아이 정보</Text>
                 </View>
 
-                {getChildren.length > 0 ? (
+                {myChildren.length > 0 ? (
                   <>
-                    {getChildren.map((child, index) => (
+                    {myChildren.map((child, index) => (
                       <View key={child.id} style={styles.childInfoContainer}>
                         <View style={styles.childInfoDetailContainer}>
                           <Image
-                            source={require('@/assets/images/characterImage.webp')}
+                            source={{
+                              uri: child.profileImage
+                                ? child.profileImage
+                                : 'http://j11a108.p.ssafy.io:8081/api/uploads/676e51cb-fcd0-41fc-a07c-f8fea8e99f4f.png',
+                            }}
                             style={styles.image}
                           />
                           <Text style={styles.childInfoText}>
-                            {child.name}(닉네임)
+                            {child.name}({child.nickname})
                           </Text>
                         </View>
                         <View style={styles.childInfoManageContainer}>

@@ -108,123 +108,121 @@ const InvestTradeScreen = ({route, navigation}: any) => {
   };
 
   return (
-    <ScrollView>
-      <SafeAreaView style={styles.container}>
-        <View style={styles.yellowContainer}>
-          {trade === 'buy' ? (
-            <Text style={styles.titleText}>구매할 가격</Text>
-          ) : (
-            <Text style={styles.titleText}>판매할 가격</Text>
-          )}
-          <View style={{flexDirection: 'row'}}>
-            <Text style={[styles.contentText, styles.textColorBlack]}>
-              {price.toLocaleString()} 머니
-            </Text>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.yellowContainer}>
+        {trade === 'buy' ? (
+          <Text style={styles.titleText}>구매할 가격</Text>
+        ) : (
+          <Text style={styles.titleText}>판매할 가격</Text>
+        )}
+        <View style={{flexDirection: 'row'}}>
+          <Text style={[styles.contentText, styles.textColorBlack]}>
+            {price.toLocaleString()} 머니
+          </Text>
+          <Text
+            style={{
+              marginLeft: 10,
+              fontFamily: fonts.LIGHT,
+              color: colors.BLACK,
+            }}>
+            ${(price / 1200).toFixed(2).toLocaleString()}
+          </Text>
+        </View>
+      </View>
+
+      <View style={styles.yellowContainer}>
+        <Text style={styles.titleText}>수량</Text>
+        {trade === 'buy' ? (
+          <View>
+            {currentValue > 0 ? (
+              <Text style={[styles.contentText, styles.textColorBlack]}>
+                {currentValue} {type === 'Real' ? '온스' : '주'}
+              </Text>
+            ) : (
+              <Text style={styles.contentText}>
+                {type === 'Real'
+                  ? '몇 온스(once)구매할까요?'
+                  : '몇 주 구매할까요?'}
+              </Text>
+            )}
             <Text
               style={{
-                marginLeft: 10,
                 fontFamily: fonts.LIGHT,
                 color: colors.BLACK,
               }}>
-              ${(price / 1200).toFixed(2).toLocaleString()}
+              구매 가능 최대 {ableBuyNum} {type === 'Real' ? '온스' : '주'} |{' '}
+              {myMoney} 머니
             </Text>
           </View>
-        </View>
-
-        <View style={styles.yellowContainer}>
-          <Text style={styles.titleText}>수량</Text>
-          {trade === 'buy' ? (
-            <View>
-              {currentValue > 0 ? (
-                <Text style={[styles.contentText, styles.textColorBlack]}>
-                  {currentValue} {type === 'Real' ? '온스' : '주'}
-                </Text>
-              ) : (
-                <Text style={styles.contentText}>
-                  {type === 'Real'
-                    ? '몇 온스(once)구매할까요?'
-                    : '몇 주 구매할까요?'}
-                </Text>
-              )}
-              <Text
-                style={{
-                  fontFamily: fonts.LIGHT,
-                  color: colors.BLACK,
-                }}>
-                구매 가능 최대 {ableBuyNum} {type === 'Real' ? '온스' : '주'} |{' '}
-                {myMoney} 머니
-              </Text>
-            </View>
-          ) : (
-            <View>
-              {currentValue > 0 ? (
-                <Text style={[styles.contentText, styles.textColorBlack]}>
-                  {currentValue}
-                </Text>
-              ) : (
-                <Text style={styles.contentText}>
-                  {type === 'Real'
-                    ? '몇 온스(once)판매할까요?'
-                    : '몇 주 판매할까요?'}
-                </Text>
-              )}
-              <Text
-                style={{
-                  fontFamily: fonts.LIGHT,
-                  color: colors.BLACK,
-                }}>
-                핀매 가능 최대 {ableSellNum}주
-              </Text>
-            </View>
-          )}
-        </View>
-
-        <KeyPad onInput={updateValue} currentValue={currentValue} />
-        {currentValue > 0 ? (
-          <TouchableOpacity
-            style={
-              trade === 'buy'
-                ? [styles.buyButton, styles.buttonBox]
-                : [styles.sellButton, styles.buttonBox]
-            }
-            onPress={trade === 'buy' ? handelBuyStock : handelSellStock}>
-            <Text
-              style={{
-                color: colors.WHITE,
-                fontFamily: fonts.MEDIUM,
-              }}>
-              {trade === 'buy' ? '매수' : '매도'}
-            </Text>
-          </TouchableOpacity>
         ) : (
-          <View style={[styles.inactiveButton, styles.buttonBox]}>
+          <View>
+            {currentValue > 0 ? (
+              <Text style={[styles.contentText, styles.textColorBlack]}>
+                {currentValue}
+              </Text>
+            ) : (
+              <Text style={styles.contentText}>
+                {type === 'Real'
+                  ? '몇 온스(once)판매할까요?'
+                  : '몇 주 판매할까요?'}
+              </Text>
+            )}
             <Text
               style={{
-                color: colors.WHITE,
-                fontFamily: fonts.MEDIUM,
+                fontFamily: fonts.LIGHT,
+                color: colors.BLACK,
               }}>
-              {trade === 'buy' ? '매수' : '매도'}
+              핀매 가능 최대 {ableSellNum}주
             </Text>
           </View>
         )}
+      </View>
 
-        <Modal animationType="fade" visible={modalVisible} transparent={true}>
-          <View style={styles.modalOverlay}>
-            <View style={styles.modalBox}>
-              <Text
-                style={{
-                  fontFamily: fonts.MEDIUM,
-                  fontSize: 20,
-                  color: colors.BLACK,
-                }}>
-                {' '}
-                {trade === 'buy' ? '매수 되었습니다' : '매도 되었습니다'}
-              </Text>
-            </View>
+      <KeyPad onInput={updateValue} currentValue={currentValue} />
+      {currentValue > 0 ? (
+        <TouchableOpacity
+          style={
+            trade === 'buy'
+              ? [styles.buyButton, styles.buttonBox]
+              : [styles.sellButton, styles.buttonBox]
+          }
+          onPress={trade === 'buy' ? handelBuyStock : handelSellStock}>
+          <Text
+            style={{
+              color: colors.WHITE,
+              fontFamily: fonts.MEDIUM,
+            }}>
+            {trade === 'buy' ? '매수' : '매도'}
+          </Text>
+        </TouchableOpacity>
+      ) : (
+        <View style={[styles.inactiveButton, styles.buttonBox]}>
+          <Text
+            style={{
+              color: colors.WHITE,
+              fontFamily: fonts.MEDIUM,
+            }}>
+            {trade === 'buy' ? '매수' : '매도'}
+          </Text>
+        </View>
+      )}
+
+      <Modal animationType="fade" visible={modalVisible} transparent={true}>
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalBox}>
+            <Text
+              style={{
+                fontFamily: fonts.MEDIUM,
+                fontSize: 20,
+                color: colors.BLACK,
+              }}>
+              {' '}
+              {trade === 'buy' ? '매수 되었습니다' : '매도 되었습니다'}
+            </Text>
           </View>
-        </Modal>
-      </SafeAreaView>
-    </ScrollView>
+        </View>
+      </Modal>
+    </SafeAreaView>
   );
 };
 
@@ -233,17 +231,18 @@ export default InvestTradeScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     backgroundColor: colors.WHITE,
+    alignItems: 'center',
+    justifyContent:'center',
     paddingTop: 35,
   },
   yellowContainer: {
-    marginBottom: 20,
-    width: 320,
+    width: 320, // 반응형?
     borderRadius: 10,
-    backgroundColor: colors.YELLOW_25,
     paddingLeft: 18,
     paddingVertical: 20,
+    backgroundColor: colors.YELLOW_25,
+    marginBottom: 20,
   },
   titleText: {
     fontFamily: fonts.BOLD,

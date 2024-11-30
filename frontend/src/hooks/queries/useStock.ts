@@ -1,6 +1,7 @@
 import {
   AllNewsResponse,
   AllReportResponse,
+  LatestStock,
   MyStock,
   ResponseContents,
   ResponseMyHistory,
@@ -10,6 +11,7 @@ import {
   ResponseStockList,
   TodayNewsResponse,
   TodayReportResponse,
+  getLatestStock,
   getMyHistory,
   getMyHistoryList,
   getMyStock,
@@ -151,6 +153,17 @@ function useGetTodaysReports(
   });
 }
 
+function useGetLatestStock(
+  stockId: number,
+  queryOptions?: UseQueryCustomOptions<LatestStock>,
+) {
+  return useQuery({
+    queryKey: [stockId],
+    queryFn: () => getLatestStock(stockId),
+    ...queryOptions,
+  });
+}
+
 function useStock() {
   const buyStockMutation = usePostBuyStock();
   const sellStockMutation = usePostSellStock();
@@ -167,6 +180,7 @@ function useStock() {
     useGetReports,
     useGetTodaysReports,
     useGetMyStockId,
+    useGetLatestStock,
   };
 }
 

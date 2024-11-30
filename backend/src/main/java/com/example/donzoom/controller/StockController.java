@@ -2,11 +2,8 @@ package com.example.donzoom.controller;
 
 import com.example.donzoom.dto.news.response.NewsSimpleResponseDto;
 import com.example.donzoom.dto.stock.request.StockRequestDto;
-import com.example.donzoom.dto.stock.response.StockResponseDto;
-import com.example.donzoom.dto.stock.response.StockSimpleResponseDto;
-import com.example.donzoom.dto.stock.response.StockTransactionHistoryResponseDto;
-import com.example.donzoom.dto.stock.response.StockTransactionHistorySimpleResponseDto;
-import com.example.donzoom.dto.stock.response.StockWalletSimpleResponseDto;
+import com.example.donzoom.dto.stock.response.*;
+import com.example.donzoom.entity.Stock;
 import com.example.donzoom.entity.StockHistory;
 import com.example.donzoom.entity.StockHistory1m;
 import com.example.donzoom.repository.StockHistory1mRepository;
@@ -40,6 +37,12 @@ public class StockController {
   public ResponseEntity<StockSimpleResponseDto> getAllStocks() {
     StockSimpleResponseDto allStocks = stockService.getAllStocks();
     return ResponseEntity.ok().body(allStocks);
+  }
+
+  @GetMapping("/{stockId}/latest")
+  public ResponseEntity<StockDetailResponseDto> getLatestStock(@PathVariable(name="stockId") Long stockId){
+    StockDetailResponseDto stock = stockService.getLatestStock(stockId );
+    return ResponseEntity.ok().body(stock);
   }
 
   // 주식 상세 조회

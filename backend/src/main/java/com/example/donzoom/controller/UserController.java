@@ -62,6 +62,7 @@ public class UserController {
             .email(child.getEmail())
             .name(child.getName())
             .nickname(child.getNickname())
+            .profileImage(child.getProfileImage())
             .build())
         .collect(Collectors.toList());
 

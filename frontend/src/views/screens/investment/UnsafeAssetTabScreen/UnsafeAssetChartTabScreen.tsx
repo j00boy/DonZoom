@@ -31,12 +31,13 @@ const UnsafeAssetChartTabScreen = ({
   navigation,
   selectedStock,
   selectedStockIndex,
+  realAssetMoney,
 }: any) => {
   const {useGetStock} = useStock();
   const [stockMessage, setStockMessage] = useState<string>('');
   const [selectedPeriod, setSelectedPeriod] = useState<string>('1달'); // 기본 기간 선택
   const [currentPrice, setCurrentPrice] = useState<number | null>(null);
-  const [realAssetMoney, setRealAssetMoney] = useState<number>(0);
+  // const [realAssetMoney, setRealAssetMoney] = useState<number>(0);
   const [candleData, setCandleData] = useState<CandleData[]>([]);
 
   const mapPeriodToApiParam = (period: string): string => {
@@ -103,7 +104,7 @@ const UnsafeAssetChartTabScreen = ({
     navigation.navigate('Trade', {
       trade: 'buy',
       type: 'Unsafe',
-      price: currentPrice,
+      price: realAssetMoney,
       selectedStockIndex: selectedStockIndex,
     });
   };
@@ -112,7 +113,7 @@ const UnsafeAssetChartTabScreen = ({
     navigation.navigate('Trade', {
       trade: 'sell',
       type: 'Unsafe',
-      price: currentPrice,
+      price: realAssetMoney,
       selectedStockIndex: selectedStockIndex,
     });
   };
@@ -222,7 +223,7 @@ const styles = StyleSheet.create({
   },
   // 매수매도버튼
   actionButtonContainer: {
-    marginTop:5,
+    marginTop: 5,
     flexDirection: 'row',
     paddingHorizontal: 10,
     gap: 10,

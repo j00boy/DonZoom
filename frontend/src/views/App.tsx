@@ -7,8 +7,14 @@ import firebase from '@react-native-firebase/app';
 import queryClient from '@/api/queryClient';
 import RootNavigator from '@/navigation/root/RootNavigator';
 import {useSignupStore} from '@/stores/useAuthStore';
-import {RefreshControl, ScrollView} from 'react-native';
+import {
+  RefreshControl,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+} from 'react-native';
 import useFCMStore from '@/stores/useFCMStore';
+import {colors} from '@/constants/colors';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDSUTJysXrGAo2kxrgyEAVNiiVcr4Xfj40',
@@ -108,10 +114,19 @@ function App() {
           }>
           <RootNavigator />
         </ScrollView> */}
-        <RootNavigator />
+        <SafeAreaView style={styles.container}>
+          <RootNavigator />
+        </SafeAreaView>
       </NavigationContainer>
     </QueryClientProvider>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.WHITE,
+  },
+});
 
 export default App;

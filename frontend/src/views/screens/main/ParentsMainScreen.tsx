@@ -183,6 +183,8 @@ function ParentsMainScreen() {
 
   return (
     <ScrollView
+      style={styles.scrollView}
+      contentContainerStyle={{flex: 1}}
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }>
@@ -361,8 +363,9 @@ function ParentsMainScreen() {
                             style={styles.moneyText}
                             adjustsFontSizeToFit={true}
                             numberOfLines={1}>
-                            {String(profileOrder[0]?.balance).toLocaleString()}
-                            원
+                            {`${Number(
+                              profileOrder[0]?.balance,
+                            ).toLocaleString()}원`}
                           </Text>
                         </View>
                         <View style={styles.accountText}>
@@ -445,9 +448,9 @@ function ParentsMainScreen() {
                     style={[styles.nextButton, {marginBottom: 20}]}
                     onPress={() => {
                       setChildId(profileOrder[0].id);
-                      setChildName(profileOrder[0].name); 
+                      setChildName(profileOrder[0].name);
                       navigation.navigate('부모미션', {
-                        screen: '부모미션'
+                        screen: '부모미션',
                       });
                     }}>
                     <Text style={styles.detailMission}>자세히 보기</Text>
@@ -488,16 +491,27 @@ function ParentsMainScreen() {
           </View>
         )}
       </View>
+      <View style={styles.bottomFlex}></View>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  bottomFlex: {
+    flexShrink: 1,
+    backgroundColor: colors.WHITE,
+    height: 500,
+  },
+  scrollView: {
+    flex: 1,
+    width: '100%',
+  },
   container: {
     flex: 1,
     backgroundColor: colors.WHITE,
     justifyContent: 'center',
     alignItems: 'center',
+    width: '100%', // 추가
   },
   profiles: {
     flexDirection: 'row',

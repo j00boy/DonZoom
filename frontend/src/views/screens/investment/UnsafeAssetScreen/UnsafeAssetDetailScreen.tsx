@@ -225,6 +225,7 @@ export default function UnsafeAssetDetailScreen({navigation}: any) {
       <InvestUnsafeAssetTabNavigator
         selectedStock={selectedStock}
         selectedStockIndex={getSelectedStockIndex()}
+        realAssetMoney={realAssetMoney}
       />
       {/* 선택된 종목과 기간에 따른 데이터 렌더링 */}
       {/* <View style={styles.stockDataContainer}>

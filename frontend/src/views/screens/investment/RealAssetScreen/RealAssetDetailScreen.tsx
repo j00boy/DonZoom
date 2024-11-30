@@ -58,15 +58,15 @@ export default function RealAssetDetailScreen({navigation}: any) {
     }
   }, [stockData]);
 
-  useWebSocket([5], (message: string) => {
-    try {
-      const parsedMessage: WebSocketMessage = JSON.parse(message);
-      setRealAssetMoney(parsedMessage.close);
-      animateValue();
-    } catch (error) {
-      console.error('Error parsing WebSocket message:', error);
-    }
-  });
+  // useWebSocket([5], (message: string) => {
+  //   try {
+  //     const parsedMessage: WebSocketMessage = JSON.parse(message);
+  //     setRealAssetMoney(parsedMessage.close);
+  //     animateValue();
+  //   } catch (error) {
+  //     console.error('Error parsing WebSocket message:', error);
+  //   }
+  // });
 
   useEffect(() => {
     setRealAssetDollar(Math.floor(realAssetMoney * 0.12));

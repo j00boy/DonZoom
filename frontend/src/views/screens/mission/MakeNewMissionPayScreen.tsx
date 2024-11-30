@@ -32,7 +32,7 @@ const MakeNewMissionPayScreen = ({navigation, route}: any) => {
   }, []);
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       {/* paybox */}
       <View style={styles.paybox}>
         <Text style={styles.topText}>미션 금액을 설정해주세요!</Text>
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.YELLOW_25,
     alignItems: 'center',
-    justifyContent:'space-evenly',
+    justifyContent: 'space-evenly',
   },
   topText: {
     fontFamily: fonts.MEDIUM,
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
   },
   paybox: {
     width: 300,
-    paddingVertical:20,
+    paddingVertical: 20,
     backgroundColor: colors.WHITE,
     alignItems: 'center',
     borderRadius: 10,
@@ -142,19 +142,19 @@ const styles = StyleSheet.create({
   },
   button: {
     width: 65,
-    padding:10,
+    padding: 10,
     borderRadius: 12,
     backgroundColor: colors.WHITE,
     marginHorizontal: 10,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  keypadBox:{
-    alignItems:'center',
+  keypadBox: {
+    alignItems: 'center',
   },
   makeButton: {
-    marginTop:15,
-    padding:10,
+    marginTop: 15,
+    padding: 10,
     width: 300,
     backgroundColor: colors.WHITE,
     borderRadius: 10,

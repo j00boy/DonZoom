@@ -34,6 +34,7 @@
     "axios": "^1.7.7",
     "qrcode": "^1.5.4",
     "react": "18.3.1",
+    "react-devtools": "^5.3.2",
     "react-native": "0.75.2",
     "react-native-calendars": "^1.1307.0",
     "react-native-camera-kit": "^13.0.0",

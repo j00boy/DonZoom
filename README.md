@@ -1,4 +1,5 @@
 # 돈줌(DonZoom)
+## 😊삼성청년SW아카데미 11기 특화프로젝트 1등 (핀테크, 우수상)😊
 ![돈줌](./images/AppImage.png)
 
 # DonZoom
